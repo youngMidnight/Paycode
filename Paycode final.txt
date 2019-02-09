@@ -1,0 +1,113 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+int main(void)
+{
+	int paycode ; // decides what kind of worker is selected
+	int managercount = 0;      // counts how many times a manager worker is selected
+	int commissioncount = 0;  // counts how many times a commission worker is selected
+	int pieceworkercount = 0;  // counts how many times a pieceworker is selected
+	int hourlycount = 0;     // counts how many timesa hourly worker was selected
+	float payrate;            // the dollar amount paid hour
+	float Managerspay;  //  payrate * 40 hours because of salary pay
+	double hours; // Number of hours worked
+	double overtime_amount = 40; // after 40 hours overtime is affect
+	double overtimehours; // finds how many hours overtime worked
+	double weekpay; // after all the math is done this is the final pay for the week
+	double overtimebouns = 1.5;  // the amount added to payrate during overtime
+	double grosssales; // the gross amount of sales that week
+	double setcommissionkpay = 250; // The set amount of commission a worker gets per week
+	double commissionrate = 5.7; // set commission rate per week sales
+	double commissionfinal;   // after all calulations this is the finalpay for the commission worker
+	double numberofpieces; // number of pieces built that week by piece worker
+	double wageperpiece; // amount paid to worker per piece
+	double pieceworkerpay; // The finalamount paid to the piece worker
+
+	
+
+	printf("Enter  pay code (-1 to end)");
+	  
+	  scanf("%d",&paycode);
+
+      	while(paycode!=-1)
+		  {
+
+		switch (paycode) {
+
+		case 1 :
+	
+	        printf("Manager selected.\n");
+			printf("Enter hourly salary:");
+			scanf("%f", &payrate);                   // This calualtes mangers pay using payrate * a set 40 hours per week
+			Managerspay = payrate * 40;
+			printf("Managers pay is $%.2f\n\n", Managerspay);
+			managercount = managercount + 1; 
+			break;
+
+		case 2:
+			
+		    printf("Hourly worker selected.\n");
+			printf("Enter the hourly rate:");
+			scanf("%f",&payrate);
+			printf("Enter the total hours worked:");
+			scanf("%lf",&hours);
+			if (hours > overtime_amount)
+			{
+				// this forumla figures overtime using given over 40 hours have been worked
+				overtimehours = hours - overtime_amount;
+				hours = overtime_amount;
+				// weeks pay can be calcuatedusing this forumla
+				weekpay = (payrate * hours) + (payrate *overtime_amount *overtimebouns);
+
+				printf("worker's pay is $%lf\n\n", weekpay);
+			}
+			else
+			{
+				weekpay = hours * payrate;
+				printf(" worker's pay is $%lf\n\n",weekpay);
+			}
+			hourlycount = hourlycount + 1;
+		break;
+
+		case 3:
+			
+		    printf("commission worker selected\n");
+			printf(" Enter weekly gross sales");
+			scanf("%lf",&grosssales);         // the total amount of gross  sales that week
+			commissionfinal = setcommissionkpay + (grosssales * commissionrate);    //the usees the set commsin rate and base pay toget commission 
+			printf(" commission worker pay is $%lf\n\n", commissionfinal);
+			commissioncount = commissioncount + 1;
+			break;
+		case 4:
+			
+		    printf("Pieceworker selected\n");
+			printf("Enter number of pieces:");
+			scanf("%lf", &numberofpieces);
+			printf(" Enter wage per piece:");
+			scanf("%lf", &wageperpiece);
+			pieceworkerpay = numberofpieces *wageperpiece;
+			printf(" Pieceworker's pay is $%lf\n\n", pieceworkerpay);
+			pieceworkercount = pieceworkercount + 1;
+			break;
+		default:
+			printf("Invalid pay code ");
+			break;
+		}
+		
+		printf("Enter  pay code (-1 to end)");
+		scanf("%d",&paycode);
+		
+	   }
+
+        printf("\n Total number of managers paid              :""%d", managercount);
+        printf("\n Total number of hourly workers paid              :""%d", hourlycount);
+        printf("\n Total number of commission workers paid              :""%d", commissioncount);
+        printf("\n Total number of managers paid              :""%d",  pieceworkercount);
+        
+
+}
+
+
+	
+
