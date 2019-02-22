@@ -1,0 +1,132 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+int ch();
+int main()
+{
+	int correctans; // the correct answer used in addition,subtraction,multiplaction
+	int userans;    // the users answer used in addition,subtraction,multiplaction
+	int Math_type;   // type of math problem selected
+	int r1 = 0;     // random number 1
+	int r2 = 0;     //  random number 2
+	int ans;       // sets a answers for division
+	int rem;     // set a remainder for division
+	int num1;    // This is used for division as a random number 1
+	int num2;   // This is used for division as a random number 2
+	int num3;  // This is used for division as a random number 3 with remainder
+	char diff = ' '; // level of diffculty
+	int value;    // used as to determine an int value for diffculty
+
+       
+
+	printf("Math pratice program Main menu\n\n");   
+
+	printf("1. Addition\n2. Subtraction\n3. Mulitplication\n4. Division\n5. Exit\n Select an option ");   // This is the main menu
+	scanf("%d",&Math_type);  // scans type of Math selected 
+	printf("Select difficulty e-easy m-medium h-hard");
+	//scanf(" %c",&diff);
+	
+
+	while(diff !='e' && diff !='m' && diff != 'h'){
+		scanf(" %c",&diff);
+		switch (diff){
+			
+				case 'e':
+					value = 10;
+					break;
+			    case 'm':                 // this switch is use calculate diffculty easy (1-10) medium (1-100) Hard (1-1000)
+			    	value = 100;
+			        break;
+			    case 'h':
+			    	value=1000;
+			    	break;	}
+			
+	srand(time(NULL)); 
+     	r1 = rand() % value;      // sets random number 1
+	    r2 = rand() % value;      // sets random number 2 
+	    num1 = rand() % value+1;
+	    num2 = rand() % value+1;
+
+
+	while (Math_type !=5)	{
+		switch (Math_type) {
+
+		case 1 :
+			printf("You choose addition\n");
+			printf("%d""+""%d"" = ? ",r1,r2);   // prints equation
+			
+			correctans = r1 + r2;           // finds the answer to the question
+			scanf("%d",&userans);             // user inputs answers
+
+			if (userans == correctans) {                // this figures out if the user is correct or not
+				printf("correct !!!\n");                 
+			}
+			else
+				printf("sorry,Incorrect\n");
+	        case 2 :
+			printf("You choose subtraction\n");
+			printf("%d""-""%d"" = ? ", r1, r2);     
+
+			correctans = r1 - r2;
+			scanf("%d", &userans);
+
+
+			if (userans == correctans) {
+				printf("correct !!!\n");
+			}
+			else
+				printf("sorry,Incorrect\n");
+			break;
+
+		case 3 :
+			printf("You choose  Mulitplication\n");
+			printf("%d""*""%d"" = ? ", r1, r2);
+
+			correctans = r1 * r2;
+			scanf("%d", &userans);
+
+			if (userans == correctans) {
+				printf("correct !!!\n");
+			}
+			else
+				printf("sorry,Incorrect\n");
+			break;
+
+		case 4 :
+			printf("You choose  Division\n");
+			if(num1 < num2)
+			{num3 = num1;
+			 num1 = num2;    // switches the number so it can be use to calcuate remainder
+			 num2 = num3;
+			}	
+			
+			printf("%d / %d = ?",num1,num2);
+			scanf("%d",&ans);
+			
+			printf("Enter reamainder ");
+			scanf("%d",&rem);
+			
+			
+			if(ans == num1 / num2 && rem == num1%num2){
+			
+			    puts("Correct");
+			}
+			 else
+			{
+				puts("Incorrect");
+			}
+			break;
+
+} //end switch
+		printf("\n1. Addition\n2. Subtraction\n3. Mulitplication\n4. Division\n5.Exit\n Select an option ");
+		scanf("%d", &Math_type);
+	}// end while
+
+
+
+
+	}}
+                           
+			
+			
